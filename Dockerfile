@@ -22,8 +22,8 @@ RUN chown -R www-data:www-data /var/www/html/translation-game \
 
 # Configure Apache to serve from the translation-game directory
 RUN echo '<VirtualHost *:80>\n\
-    DocumentRoot /var/www/html/translation-game\n\
-    <Directory /var/www/html/translation-game>\n\
+    DocumentRoot /var/www/html\n\
+    <Directory /var/www/html>\n\
         Options Indexes FollowSymLinks\n\
         AllowOverride All\n\
         Require all granted\n\

@@ -38,21 +38,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if username is already in use
         // In a real app, this would check a database
         // For simplicity, we'll use a JSON file to store usernames
-        $usersFile = 'users.json';
+//        $usersFile = 'users.json';
+//
+//        if (file_exists($usersFile)) {
+//            $users = json_decode(file_get_contents($usersFile), true);
+//        } else {
+//            $users = [];
+//        }
 
-        if (file_exists($usersFile)) {
-            $users = json_decode(file_get_contents($usersFile), true);
-        } else {
-            $users = [];
-        }
-
-        // Check if username exists
-        foreach ($users as $user) {
-            if (strtolower($user['username']) === strtolower($username)) {
-                echo json_encode(['success' => false, 'message' => 'Username already taken']);
-                exit();
-            }
-        }
+//        // Check if username exists
+//        foreach ($users as $user) {
+//            if (strtolower($user['username']) === strtolower($username)) {
+//                echo json_encode(['success' => false, 'message' => 'Username already taken']);
+//                exit();
+//            }
+//        }
 
         // Generate a unique user ID
         $userId = 'user_' . uniqid();
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         // Save the updated user list
-        file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
+//        file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
 
         // Set session variables
         $_SESSION['user_id'] = $userId;
