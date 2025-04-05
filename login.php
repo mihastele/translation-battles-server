@@ -1,8 +1,30 @@
 <?php
+
+$allowedOrigins = [
+    'http://localhost:5173',
+    'https://localhost',
+//    'https://www.example.com'
+];
+
 // Enable CORS for development
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+//header("Access-Control-Allow-Origin: *");
+
+if (isset($_SERVER['HTTP_ORIGIN']) &&
+    in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+} else {
+    header("HTTP/1.1 403 Forbidden");
+    exit;
+}
+
+header("Access-Control-Allow-Credentials: true");
+
+// For custom headers
+header("Access-Control-Allow-Headers: Content-Type, Authorization, Custom-Header");
+//header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Content-Type: application/json");
 
 // Handle preflight OPTIONS request

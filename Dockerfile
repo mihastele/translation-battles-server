@@ -27,10 +27,18 @@ RUN echo '<VirtualHost *:80>\n\
         Options Indexes FollowSymLinks\n\
         AllowOverride All\n\
         Require all granted\n\
+        # CORS Headers\n\
+        # Header always set Access-Control-Allow-Origin "*"\n\
+        # Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"\n\
+        # Header always set Access-Control-Allow-Headers "Content-Type, Authorization"\n\
+        # Header always set Access-Control-Allow-Credentials "true"\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+# Enable headers module
+# RUN a2enmod headers
 
 # Expose port 80
 EXPOSE 80
