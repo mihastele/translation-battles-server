@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html/translation-game
+    restart: always
